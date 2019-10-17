@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel='stylesheet' type='text/css' href='index.css'>
+    <link rel="stylesheet" href="fontawesome/css/all.css">
+    <link rel="stylesheet" type='text/css' href="flags.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> example </title>
+</head>
+<body>
+    <!--facebook share-->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0"></script>
+    <!--HEADER-->
+    <input type="checkbox" id="wrapper-close">
+    <div class="wrapper">
+        <div class="wrapper-content">
+            start selling your products or buy them from anywhere!
+            <label for="wrapper-close">
+                <i class="fas fa-times"></i>
+            </label> 
+        </div>
+    </div>
+    <header class="main-header">
+        <h1>Bonfire</h1>
+        <input type="checkbox" id="currencyToggle">
+        <div class="currencyMenu">
+            <label for="currencyToggle">
+                <i class="fas fa-caret-down"></i>
+            </label>
+            <div class="currency">
+                <div class="flag flag-us currencyPic"></div>    
+                <span>USD</span>
+            </div>
+            <div class="currency">
+                <div class="flag flag-eu currencyPic"></div>
+                <span>EUR</span>
+            </div>
+        </div>
+        <a href="#" class="cartButton">Cart (3)</a>
+    </header>
+    <div class="horizontal"></div>
+    <!--MENU-->
+    <input type="checkbox" id="menuToggle">
+    <nav class="menu">
+        <label for="menuToggle">
+            <i class="fas fa-bars"></i>
+            <h2>MENU</h2>
+        </label>
+        <div class="searchContainer">
+            <input type="checkbox" id="favorites">
+            <label for="favorites"></label>
+            <div class="dottedVertical">&#8203;</div>
+            <a href="#"><i class="fas fa-search"></i></a>
+        </div>
+        <div class="menuItem">home</div>
+        <input type="checkbox" id="menToggle">
+        <div class="menuItem">
+            <label for="menToggle">
+                <span>men</span>
+                <i class="fas fa-caret-down"></i>
+            </label>
+            <div class="menuItemContent">hoodie</div>
+            <div class="menuItemContent">jeans</div>
+            <div class="menuItemContent">t-shirts</div>
+            <div class="menuItemContent">sneakers</div>
+            <div class="menuItemContent">underwear</div>
+        </div>
+        <input type="checkbox" id="womenToggle">
+        <div class="menuItem">
+            <label for="womenToggle">
+                <span>women</span>
+                <i class="fas fa-caret-down"></i>
+            </label>
+            <div class="menuItemContent">hoodie</div>
+            <div class="menuItemContent">jeans</div>
+            <div class="menuItemContent">t-shirts</div>
+            <div class="menuItemContent">sneakers</div>
+            <div class="menuItemContent">underwear</div>
+        </div>
+        <div class="menuItem">lookbook</div>
+        <div class="menuItem">about</div>
+        <div class="menuItem">blog</div>
+    </nav>
+    <div class="horizontal"></div>
+    <!--CONTENT-->
+    <main>
+        <section class="item">
+                <a href="#" class="backBtn">‹ Back to <span>Woman</span></a>
+                <h2>The Atelier Tailored Coat</h2>
+                <div class="reviews">
+                    <div class="rating">
+                        <input type="radio" name="star" class="starInput" id="star1">
+                        <label for="star1" class="starLabel"></label>
+                        <input type="radio" name="star" class="starInput" id="star2">
+                        <label for="star2" class="starLabel"></label>
+                        <input type="radio" name="star" class="starInput" id="star3">
+                        <label for="star3" class="starLabel"></label>
+                        <input type="radio" name="star" class="starInput" id="star4">
+                        <label for="star4" class="starLabel"></label>
+                        <input type="radio" name="star" class="starInput" id="star5">
+                        <label for="star5" class="starLabel"></label>
+                    </div>
+                    <a href="#">3 Review(s)</a>
+                    <span>|</span>
+                    <a href="#">Add a Review</a>
+                </div>
+                <span class="cost">$499.00</span><br>
+                <span class="itemParam">Availability :</span><a href="#" class="paramValue">In stock</a><br>
+                <span class="itemParam">Product Code :</span><a href="#" class="paramValue">#4657</a><br>
+                <span class="itemParam">Tags :</span><a href="#" class="paramValue">Fashion, Hood, Classic</a><br>
+                <div class="itemInfo">
+                    <div class="description">
+                        Sleek, polished, and boasting an impeccably modern fit, this blue, 2-but-
+                        ton Lazio suit features a notch lapel, flap pockets, and accompanying flat
+                        front trousers—all in pure wool by Vitale Barberis Canonico.
+                    </div>
+                    <ul>
+                        <li>Dark blue suit for a tone-on-tone look</li>
+                        <li>Regular fit</li>
+                        <li>100% Cotton</li>
+                        <li>Free shipping with 4 days delivery</li>
+                    </ul>
+                </div>
+        </section>
+        <section class="gallery">
+            <figure class="galleryPicMain">
+                <img src="img/pic1.jpg" class="galleryPic" alt="mainView">
+            </figure>
+            <figure class="galleryPic1">
+                <img src="img/pic1.jpg" class="galleryPic" alt="itemView" onclick="choosePic(this)">
+            </figure>
+            <figure class="galleryPic2">
+                <img src="img/pic2.jpg" class="galleryPic" alt="itemView" onclick="choosePic(this)">
+            </figure>
+            <figure class="galleryPic3">
+                <img src="img/pic3.jpg" class="galleryPic" alt="itemView" onclick="choosePic(this)">
+            </figure>
+            <figure class="galleryPic4">
+                <img src="img/pic4.jpg" class="galleryPic" alt="itemView" onclick="choosePic(this)">
+            </figure>
+        </section>
+        <section class="order">
+            <form class="orderInfo">
+                <div class="formCard">
+                    <label for="selectColor" class="cardLabel">color</label><br>
+                    <select name="selectColor" required>
+                        <option selected></option>
+                        <option value="black">black</option>
+                        <option value="white">white</option>
+                        <option value="red">red</option>
+                        <option value="blue">blue</option> 
+                    </select>
+                </div>
+                <div class="formCard">
+                    <label for="selectSize" class="cardLabel">size</label><br>
+                    <select name="selectSize" required>
+                        <option selected></option>
+                        <option value="xl">xl</option>
+                        <option value="l">l</option>
+                        <option value="m">m</option>
+                        <option value="s">s</option>
+                        <option value="xs">xs</option> 
+                    </select>
+                </div>
+                <div class="formCard">
+                    <label for="number" class="cardLabel">qty</label><br>
+                    <input type="number" name="quantity" min="1" max="100" required>
+                </div>
+                <div class="formCard">
+                    <button type="button" class="clearBtn">clear selection</button>
+                </div>
+                <div class="formCard">
+                    <button type="submit" class="submitBtn">add to cart</button>
+                </div>
+                <div class="formCard">
+                    <button type="button" class="addFavorite"><i class="far fa-heart"></i>add to wishlist</button>
+                </div>
+            </form>
+        </section>
+        <section class="socialNetworks">
+            <h2>share this</h2>
+            <div class="socialButton">
+                    <div class="fb-like"
+                    data-href="https://developers.facebook.com/docs/plugins/"
+                    data-width=""
+                    data-layout="button_count"
+                    data-action="like"
+                    data-size="small"
+                    data-show-faces="true"
+                    data-share="true">
+                </div>
+                <style media="screen" type="text/css">
+                    .fb_iframe_widget span 
+                    {
+                        vertical-align: middle !important;
+                    }
+                    </style>
+            </div>
+            <div class="socialButton">
+                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+                <style media="screen" type="text/css">
+                    #twitter-widget-0{
+                        vertical-align: middle !important;
+                    }
+                </style>
+            </div>
+        </section>
+    </main>
+    
+    <!--FOOTER-->
+    <div class="horizontal"></div>
+    <footer>
+        Made with Love & Coffee © 2015 Design Lazy. All Rights Reserved.
+    </footer>
+</body>
+<script src='script.js'></script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</html>
