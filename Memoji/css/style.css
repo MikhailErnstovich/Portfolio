@@ -1,0 +1,74 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #cfd0cf;
+}
+
+.game-container {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 2vmin;
+  -ms-grid-columns: (10vmin)[6];
+      grid-template-columns: repeat(6, 10vmin);
+  -ms-grid-rows: (10vmin)[4];
+      grid-template-rows: repeat(4, 10vmin);
+  -webkit-perspective: 600px;
+          perspective: 600px;
+}
+
+.game-container .card {
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 1s;
+  transition: -webkit-transform 1s;
+  transition: transform 1s;
+  transition: transform 1s, -webkit-transform 1s;
+}
+
+.game-container .card div {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+
+.game-container .card .card-face {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+.green {
+  background-color: green;
+}
+
+.gray {
+  background-color: gray;
+}
+
+.blue {
+  background-color: #6161f8;
+}
+
+.red {
+  background-color: red;
+}
+
+.rotY180 {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+/*# sourceMappingURL=style.css.map */

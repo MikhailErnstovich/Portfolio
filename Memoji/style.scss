@@ -1,0 +1,45 @@
+*{
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+body{
+    background-color: #cfd0cf;
+}
+.game-container{
+    display: grid;
+    grid-gap: 2vmin;
+    grid-template-columns: repeat(6, 10vmin);
+    grid-template-rows: repeat(4, 10vmin);
+    perspective: 600px;
+    .card{
+        transform-style: preserve-3d;
+        transition: transform 1s;
+        div{
+            position: absolute;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            width:100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+        .card-face{
+            transform: rotateY(180deg);
+        }
+    }
+}
+.green{
+    background-color: green;
+}
+.gray{
+    background-color: gray;
+}
+.blue{
+    background-color: rgb(97, 97, 248);
+}
+.red{
+    background-color: red;
+}
+.rotY180{
+    transform: rotateY(180deg);
+}
