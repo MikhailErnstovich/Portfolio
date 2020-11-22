@@ -1,11 +1,23 @@
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  margin: 0 0;
 }
 
 body {
-  background-color: #cfd0cf;
+  background-color: #00E0C6;
+}
+
+.game-section {
+  height: 100vh;
+}
+
+.game-section h2 {
+  text-align: center;
+  padding: 6vmin 0 4vmin 0;
+  font-size: 4vmin;
+  font-family: Arial, sans-serif;
+  color: #363636;
 }
 
 .game-container {
@@ -16,6 +28,9 @@ body {
       grid-template-columns: repeat(6, 10vmin);
   -ms-grid-rows: (10vmin)[4];
       grid-template-rows: repeat(4, 10vmin);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-perspective: 600px;
           perspective: 600px;
 }
@@ -23,10 +38,12 @@ body {
 .game-container .card {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  -webkit-transition: -webkit-transform 1s;
-  transition: -webkit-transform 1s;
-  transition: transform 1s;
-  transition: transform 1s, -webkit-transform 1s;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+  font-size: 6vmin;
+  line-height: 10vmin;
 }
 
 .game-container .card div {
@@ -44,6 +61,9 @@ body {
   height: 100%;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
+  border-radius: 2vmin;
+  -webkit-box-shadow: 0.1vmin 0.1vmin 0.5vmin black;
+          box-shadow: 0.1vmin 0.1vmin 0.5vmin black;
 }
 
 .game-container .card .card-face {
@@ -52,19 +72,25 @@ body {
 }
 
 .green {
-  background-color: green;
-}
-
-.gray {
-  background-color: gray;
-}
-
-.blue {
-  background-color: #6161f8;
+  background-color: #8CFA90;
+  border: 0.5vmin solid #8CFA90;
 }
 
 .red {
-  background-color: red;
+  background-color: #f25f5c;
+}
+
+.gradient {
+  background-image: linear-gradient(45deg, #F0EF6E, #00E0C6);
+  border: 0.5vmin solid #75A0FA;
+}
+
+.borderColor {
+  background-color: #75A0FA;
+}
+
+.faceColor {
+  background-color: #F0EF6E;
 }
 
 .rotY180 {

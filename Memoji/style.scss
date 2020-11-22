@@ -1,19 +1,40 @@
 *{
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    margin: 0 0;
 }
+$red: #f25f5c;
+$green:#8CFA90;
+$fColor: #F0EF6E; 
+$bColor:#75A0FA;
+$gC1: #F0EF6E;
+$gC2: #00E0C6;
+$backColor: #00E0C6;
+
 body{
-    background-color: #cfd0cf;
+    background-color: $backColor;
+}
+.game-section{
+    height: 100vh;
+    h2{
+        text-align: center;
+        padding: 6vmin 0 4vmin 0;
+        font-size: 4vmin;
+        font-family: Arial, sans-serif;
+        color: rgb(54, 54, 54);
+    }
 }
 .game-container{
     display: grid;
     grid-gap: 2vmin;
     grid-template-columns: repeat(6, 10vmin);
     grid-template-rows: repeat(4, 10vmin);
+    justify-content: center;
     perspective: 600px;
     .card{
         transform-style: preserve-3d;
-        transition: transform 1s;
+        transition: transform 0.5s;
+        font-size: 6vmin;
+        line-height: 10vmin;
         div{
             position: absolute;
             display:flex;
@@ -22,6 +43,8 @@ body{
             width:100%;
             height: 100%;
             backface-visibility: hidden;
+            border-radius: 2vmin;
+            box-shadow: 0.1vmin 0.1vmin 0.5vmin black;
         }
         .card-face{
             transform: rotateY(180deg);
@@ -29,17 +52,23 @@ body{
     }
 }
 .green{
-    background-color: green;
-}
-.gray{
-    background-color: gray;
-}
-.blue{
-    background-color: rgb(97, 97, 248);
+    background-color: $green;
+    border: 0.5vmin solid $green;
 }
 .red{
-    background-color: red;
+    background-color: $red;
 }
+.gradient{
+    background-image: linear-gradient(45deg,$gC1,$gC2);
+    border: 0.5vmin solid $bColor;
+}
+.borderColor{
+    background-color: $bColor;
+}
+.faceColor{
+    background-color: $fColor;
+}
+
 .rotY180{
     transform: rotateY(180deg);
 }
