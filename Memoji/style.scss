@@ -9,27 +9,43 @@ $bColor:#75A0FA;
 $gC1: #F0EF6E;
 $gC2: #00E0C6;
 $backColor: #00E0C6;
+$dark: #363636;
 
 body{
     background-color: $backColor;
 }
 .game-section{
+    display: flex;
+    flex-direction: column;
     height: 100vh;
-    h2{
+    .game-title{
+        order:-1000;
         text-align: center;
         padding: 6vmin 0 4vmin 0;
         font-size: 4vmin;
         font-family: Arial, sans-serif;
-        color: rgb(54, 54, 54);
+        font-weight: 700;
+        color: $dark;
+    }
+    .game-clock{
+        order: 1000;
+        text-align: center;
+        padding: 2vmin 0;
+        font-size: 3vmin;
+        font-family: Arial, sans-serif;
+        font-weight: 700;
+        color: $dark;
     }
 }
 .game-container{
+    order:1;
     display: grid;
     grid-gap: 2vmin;
     grid-template-columns: repeat(6, 10vmin);
     grid-template-rows: repeat(4, 10vmin);
     justify-content: center;
     perspective: 600px;
+    user-select: none;
     .card{
         transform-style: preserve-3d;
         transition: transform 0.5s;

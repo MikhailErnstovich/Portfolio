@@ -9,18 +9,44 @@ body {
 }
 
 .game-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   height: 100vh;
 }
 
-.game-section h2 {
+.game-section .game-title {
+  -webkit-box-ordinal-group: -999;
+      -ms-flex-order: -1000;
+          order: -1000;
   text-align: center;
   padding: 6vmin 0 4vmin 0;
   font-size: 4vmin;
   font-family: Arial, sans-serif;
+  font-weight: 700;
+  color: #363636;
+}
+
+.game-section .game-clock {
+  -webkit-box-ordinal-group: 1001;
+      -ms-flex-order: 1000;
+          order: 1000;
+  text-align: center;
+  padding: 2vmin 0;
+  font-size: 3vmin;
+  font-family: Arial, sans-serif;
+  font-weight: 700;
   color: #363636;
 }
 
 .game-container {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
   display: -ms-grid;
   display: grid;
   grid-gap: 2vmin;
@@ -33,6 +59,10 @@ body {
           justify-content: center;
   -webkit-perspective: 600px;
           perspective: 600px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .game-container .card {

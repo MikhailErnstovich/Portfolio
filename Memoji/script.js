@@ -1,11 +1,11 @@
 /*no trash in global scope*/
 (function(){
     const gameContainer = document.querySelector('.game-container');
+    const gameSection = document.querySelector('.game-section');
     const gameName = 'Memoji';
     const cellsQuantity = 24;
     const emojiPack = ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐨", "🐯", "🦁", "🐮", "🐷", "🐽", "🐸", "🐵", "🙈", "🙉", "🙊", "🐒", "🐔", "🐧", "🐦", "🐤", "🐣", "🐥", "🦆", "🦅", "🦉", "🦇", "🐺", "🐗", "🐴", "🦄", "🐝", "🐛", "🦋", "🐌", "🐞", "🐜", "🦟", "🦗", "🕷", "🕸", "🦂", "🐢", "🐍", "🦎", "🦖", "🦕", "🐙", "🦑", "🦐", "🦞", "🦀", "🐡", "🐠", "🐟", "🐬", "🐳", "🐋", "🦈", "🐊", "🐅", "🐆", "🦓", "🦍", "🦧", "🐘", "🦛", "🦏", "🐪", "🐫", "🦒", "🦘", "🐃", "🐂", "🐄", "🐎", "🐖", "🐏", "🐑", "🦙", "🐐", "🦌", "🐕", "🐩", "🦮", "🐕‍","🦺", "🐈", "🐓", "🦃", "🦚", "🦜", "🦢", "🦩", "🕊", "🐇", "🦝", "🦨"];
-    /*add game title*/
-    gameContainer.previousElementSibling.innerText = gameName;
+    
 
     /*create emoji array according to field size*/
     let symbols = emojiPack.slice(0,cellsQuantity/2);
@@ -22,14 +22,24 @@
             this.invalid = false;
         }
     }
+    
     /*game data and methods*/
     let gameObj = {
+        section: gameSection,
         container: gameContainer,
+        title: gameName,
         cardsArr: [],
         addCardsValues: function(arr){
             this.cardsArr.forEach(function(el, num){
                 el.value = arr[num];
             });
+        },
+        /*add game title*/
+        createTitle: function(){
+            let title = document.createElement('H2');
+            title.classList.add('game-title');
+            title.innerHTML = this.title;
+            this.section.append(title);
         },
         createCard: function(container,obj){
             let cardElem = document.createElement('DIV');
@@ -53,8 +63,19 @@
             }
             this.addCardsValues(arr);
         },
-        createOverlay:function(){
-            
+        createClock:function(){
+            let clock = document.createElement('DIV');
+            let min = document.createElement('SPAN');
+            let divider = document.createElement('SPAN');
+            let sec = document.createElement('SPAN');
+            clock.classList.add('game-clock');
+            clock.append(min);
+            clock.append(divider);
+            clock.append(sec);
+            min.innerText = "00";
+            sec.innerText = "00";
+            divider.innerText =":";
+            this.section.append(clock);
         },
         gameLogic: function(event){
             /*check click on card*/
@@ -108,10 +129,60 @@
                     arr[1].invalid = true;
                 }
             }
+        },
+        timer: function(){
+            let x = 0;
+            let minEl = this.section.querySelector('.game-clock').firstElementChild;
+            let secEl = this.section.querySelector('.game-clock').childNodes[2];
+            let metronome = setInterval(()=>{
+                x++;
+                let win = true;
+                this.cardsArr.forEach(function(el){
+                    if(!el.card.firstChild.classList.contains('green')){
+                        win = false;
+                    }
+                });
+                if(win){
+                    console.log('win');
+                    clearTimeout(timeout);
+                    clearInterval(metronome);
+                }
+                let min = Math.floor(x/60);
+                let sec = x%60;
+                if(min < 60){
+                    if(min < 10){
+                        minEl.innerText = "0" + min;
+                    } else {
+                        minEl.innerText = min;
+                    }
+                }
+                if(sec < 60){
+                    if(sec < 10){
+                        secEl.innerText = "0" + sec;
+                    } else {
+                        secEl.innerText = sec;
+                    }
+                }                
+            }, 1000);
+            let timeout = setTimeout(()=>{
+                clearInterval(metronome);
+                let result = true;
+                this.cardsArr.forEach(function(el){
+                    if(el.inProcess && el.invalid){
+                        result = false;
+                    }
+                });
+                if(result){
+                    console.log('loose');
+                }
+            },120000);
         }
     };
-    gameObj.createField(cellsQuantity, symbols);
 
+    gameObj.createTitle();
+    gameObj.createClock("00-00");
+    gameObj.createField(cellsQuantity, symbols);
+    gameObj.timer();
     gameContainer.addEventListener('click', function(){
         gameObj.gameLogic(event);
     });
