@@ -20,6 +20,14 @@ body {
 }
 
 .game-section .game-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-ordinal-group: -999;
       -ms-flex-order: -1000;
           order: -1000;
@@ -29,6 +37,93 @@ body {
   font-family: Arial, sans-serif;
   font-weight: 700;
   color: #363636;
+}
+
+.game-section .game-title span {
+  display: block;
+  width: 7vmin;
+  height: 7vmin;
+  margin: 0 1vmin;
+  -webkit-perspective: 200px;
+          perspective: 200px;
+}
+
+.game-section .game-title span em {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  color: transparent;
+  border-width: 0.5vmin;
+  border-style: solid;
+  border-radius: 1vmin;
+  font-style: normal;
+  -webkit-transform: rotate3d(0, 1, 0, 0deg);
+          transform: rotate3d(0, 1, 0, 0deg);
+  -webkit-animation: letterFlip 1s;
+          animation: letterFlip 1s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes letterFlip {
+  from {
+    -webkit-transform: rotate3d(0, 1, 0, 90deg);
+            transform: rotate3d(0, 1, 0, 90deg);
+    color: transparent;
+    border-color: transparent;
+  }
+  to {
+    -webkit-transform: rotate3d(0, 1, 0, 0deg);
+            transform: rotate3d(0, 1, 0, 0deg);
+    color: #363636;
+    border-color: #363636;
+  }
+}
+
+@keyframes letterFlip {
+  from {
+    -webkit-transform: rotate3d(0, 1, 0, 90deg);
+            transform: rotate3d(0, 1, 0, 90deg);
+    color: transparent;
+    border-color: transparent;
+  }
+  to {
+    -webkit-transform: rotate3d(0, 1, 0, 0deg);
+            transform: rotate3d(0, 1, 0, 0deg);
+    color: #363636;
+    border-color: #363636;
+  }
+}
+
+.game-section .game-title span:nth-child(2) em {
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+}
+
+.game-section .game-title span:nth-child(3) em {
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+.game-section .game-title span:nth-child(4) em {
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+.game-section .game-title span:nth-child(5) em {
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
 }
 
 .game-section .game-clock {
@@ -41,6 +136,102 @@ body {
   font-family: Arial, sans-serif;
   font-weight: 700;
   color: #363636;
+}
+
+.game-section .game-overlay {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0000008f;
+}
+
+.game-section .game-overlay .message-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 30vw;
+  padding: 3vmin;
+  background-color: #00E0C6;
+  font-size: 4vmin;
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  color: #363636;
+  text-align: center;
+  border-radius: 4vmin;
+  border: 0.5vmin solid #363636;
+}
+
+.game-section .game-overlay .message-box h2 {
+  display: block;
+  font-size: 4vmin;
+  margin-bottom: 3vmin;
+}
+
+.game-section .game-overlay .message-box .restart-button {
+  width: 5vmin;
+  height: 5vmin;
+  border-radius: 50%;
+  border: 0.5vmin solid #75A0FA;
+  cursor: pointer;
+  color: inherit;
+  padding: 0;
+  font: inherit;
+  outline: inherit;
+  font-size: 3.5vmin;
+  background-color: #8CFA90;
+  -webkit-transition: border 0.5s;
+  transition: border 0.5s;
+  -webkit-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out;
+}
+
+.game-section .game-overlay .message-box .restart-button:hover {
+  border: 0.5vmin solid #8CFA90;
+  -webkit-transform: rotate(0);
+          transform: rotate(0);
+  -webkit-animation: rotateButton 2s;
+          animation: rotateButton 2s;
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes rotateButton {
+  from {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateButton {
+  from {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
 }
 
 .game-container {
@@ -126,5 +317,15 @@ body {
 .rotY180 {
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
+}
+
+.hidden {
+  display: none;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 /*# sourceMappingURL=style.css.map */

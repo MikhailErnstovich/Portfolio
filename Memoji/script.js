@@ -6,10 +6,8 @@
     const cellsQuantity = 24;
     const emojiPack = ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐨", "🐯", "🦁", "🐮", "🐷", "🐽", "🐸", "🐵", "🙈", "🙉", "🙊", "🐒", "🐔", "🐧", "🐦", "🐤", "🐣", "🐥", "🦆", "🦅", "🦉", "🦇", "🐺", "🐗", "🐴", "🦄", "🐝", "🐛", "🦋", "🐌", "🐞", "🐜", "🦟", "🦗", "🕷", "🕸", "🦂", "🐢", "🐍", "🦎", "🦖", "🦕", "🐙", "🦑", "🦐", "🦞", "🦀", "🐡", "🐠", "🐟", "🐬", "🐳", "🐋", "🦈", "🐊", "🐅", "🐆", "🦓", "🦍", "🦧", "🐘", "🦛", "🦏", "🐪", "🐫", "🦒", "🦘", "🐃", "🐂", "🐄", "🐎", "🐖", "🐏", "🐑", "🦙", "🐐", "🦌", "🐕", "🐩", "🦮", "🐕‍","🦺", "🐈", "🐓", "🦃", "🦚", "🦜", "🦢", "🦩", "🕊", "🐇", "🦝", "🦨"];
     
-
     /*create emoji array according to field size*/
     let symbols = emojiPack.slice(0,cellsQuantity/2);
-    symbols = symbols.concat(symbols).sort(() => Math.random() - 0.5);
 
     /*constructor of cards*/
     class GameCard {
@@ -38,10 +36,33 @@
         createTitle: function(){
             let title = document.createElement('H2');
             title.classList.add('game-title');
-            title.innerHTML = this.title;
+            let str = "";
+            for(let i = 0; i < this.title.length; i++){
+                str += "<span><em>" + this.title.charAt(i) + "</em></span>";
+            }
+            title.innerHTML = str;
             this.section.append(title);
         },
-        createCard: function(container,obj){
+        /*add overlay*/
+        createOverlay: function(){
+            let overlay = document.createElement('DIV');
+            overlay.classList.add('game-overlay');
+            overlay.classList.add('flex');
+            let messageBox = document.createElement('DIV');
+            messageBox.classList.add('message-box');
+            let messageText = document.createElement('H2');
+            messageText.innerText = "RESTART";
+            let restartButton = document.createElement('BUTTON');
+            restartButton.innerHTML = '&#8635;';
+            restartButton.classList.add('restart-button');
+            messageBox.append(messageText);
+            messageBox.append(restartButton);
+            overlay.append(messageBox);
+            this.section.append(overlay);
+
+        },
+        /*create single card*/
+        createCard: function(obj){
             let cardElem = document.createElement('DIV');
             cardElem.classList.add('card');
             let cover = document.createElement('DIV');
@@ -50,19 +71,22 @@
             face.classList.add('card-face','faceColor','rotY180');
             cardElem.append(face);
             cardElem.append(cover);
-            container.append(cardElem);
+            this.container.append(cardElem);
             obj.card = cardElem;
             this.cardsArr.push(obj);
         },
+        /*create all cards*/
         createField: function(size, arr){
             for(let i = 0; i < size; i++){
                 let x = new GameCard();
                 x.num = i;
-                this.createCard(this.container,x);
+                this.createCard(x);
                 this.container.children[i].dataset.num = i;
             }
-            this.addCardsValues(arr);
+            this.createOverlay();
+            this.start(arr);
         },
+        /*create clock box*/
         createClock:function(){
             let clock = document.createElement('DIV');
             let min = document.createElement('SPAN');
@@ -130,10 +154,30 @@
                 }
             }
         },
+        /*start or restart*/
+        start: function(arr){
+            arr = arr.concat(arr).sort(() => Math.random() - 0.5);
+            this.addCardsValues(arr);
+            this.cardsArr.forEach(function(el){
+                el.inProcess = false;
+                el.fixed = false;
+                el.invalid = false;
+                el.card.className = "";
+                el.card.classList.add('card');
+                el.card.firstChild.className = "";
+                el.card.firstChild.classList.add("card-face","faceColor","rotY180");
+            });
+            this.section.querySelector('.game-overlay').classList.toggle('hidden');
+            this.section.querySelector('.game-overlay').classList.toggle('flex');
+            this.timer();
+        },
+        /*set game timer*/
         timer: function(){
             let x = 0;
             let minEl = this.section.querySelector('.game-clock').firstElementChild;
             let secEl = this.section.querySelector('.game-clock').childNodes[2];
+            minEl.innerText = "00";
+            secEl.innerText = "00";
             let metronome = setInterval(()=>{
                 x++;
                 let win = true;
@@ -143,9 +187,12 @@
                     }
                 });
                 if(win){
-                    console.log('win');
                     clearTimeout(timeout);
                     clearInterval(metronome);
+                    this.section.querySelector('.game-overlay').classList.toggle('hidden');
+                    this.section.querySelector('.game-overlay').classList.toggle('flex');
+                    this.section.querySelector('.message-box')
+                    .getElementsByTagName('H2')[0].innerText = 'WIN';
                 }
                 let min = Math.floor(x/60);
                 let sec = x%60;
@@ -173,19 +220,26 @@
                     }
                 });
                 if(result){
-                    console.log('loose');
+                    this.section.querySelector('.game-overlay').classList.toggle('hidden');
+                    this.section.querySelector('.game-overlay').classList.toggle('flex');
+                    this.section.querySelector('.message-box')
+                    .getElementsByTagName('H2')[0].innerText = 'LOOSE!';
                 }
+                clearTimeout(timeout);
             },120000);
         }
-    };
 
+    };
+    
     gameObj.createTitle();
-    gameObj.createClock("00-00");
+    gameObj.createClock();
     gameObj.createField(cellsQuantity, symbols);
-    gameObj.timer();
     gameContainer.addEventListener('click', function(){
         gameObj.gameLogic(event);
     });
+    gameSection.querySelector(".restart-button").addEventListener('click',function(){
+        gameObj.start(symbols);
+    }); 
 })();
 
 

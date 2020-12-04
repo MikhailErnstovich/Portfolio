@@ -19,6 +19,9 @@ body{
     flex-direction: column;
     height: 100vh;
     .game-title{
+        display: flex;
+        align-content: center;
+        justify-content: center;
         order:-1000;
         text-align: center;
         padding: 6vmin 0 4vmin 0;
@@ -26,6 +29,63 @@ body{
         font-family: Arial, sans-serif;
         font-weight: 700;
         color: $dark;
+        span{
+            display: block;
+            width: 7vmin;
+            height: 7vmin;
+            margin: 0 1vmin;
+            perspective: 200px;
+            em{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                color: transparent;
+                border-width: 0.5vmin;
+                border-style: solid;
+                border-radius: 1vmin;
+                font-style: normal;
+                transform: rotate3d(0, 1, 0, 0deg);
+                animation: letterFlip 1s;
+                animation-timing-function: ease-in-out;
+                transform-style: preserve-3d;
+                animation-fill-mode: forwards;
+            }
+        }        
+        @keyframes letterFlip {
+            from {
+                transform: rotate3d(0, 1, 0, 90deg);
+                color: transparent;
+                border-color: transparent;
+            }
+            to{
+                transform: rotate3d(0, 1, 0, 0deg);
+                color:$dark;
+                border-color: $dark;
+            }
+        }
+
+        span:nth-child(2){
+            em{
+                animation-delay: 1s;
+            }
+        }
+        span:nth-child(3){
+            em{
+                animation-delay: 2s;
+            }
+        }
+        span:nth-child(4){
+            em{
+                animation-delay: 2s;
+            }
+        }
+        span:nth-child(5){
+            em{
+                animation-delay: 1s;
+            }
+        }
+
     }
     .game-clock{
         order: 1000;
@@ -35,6 +95,66 @@ body{
         font-family: Arial, sans-serif;
         font-weight: 700;
         color: $dark;
+    }
+    .game-overlay{
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top:0;
+        left:0;
+        width: 100%;
+        height: 100%;
+        background-color: #0000008f;
+        .message-box{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30vw;
+            padding: 3vmin;
+            background-color: $backColor;
+            font-size: 4vmin;
+            font-family: Arial, sans-serif;
+            font-weight: 700;
+            color: $dark;
+            text-align: center;
+            border-radius: 4vmin;
+            border: 0.5vmin solid $dark;
+            h2{
+                display:block;
+                font-size: 4vmin;
+                margin-bottom: 3vmin;
+            }
+            .restart-button{
+                width: 5vmin;
+                height: 5vmin;
+                border-radius: 50%;
+                border: 0.5vmin solid $bColor;
+                cursor: pointer;
+                color: inherit;
+                padding: 0;
+                font: inherit;
+                outline: inherit;
+                font-size: 3.5vmin;
+                background-color: $green;
+                transition: border 0.5s;
+                transition-timing-function: ease-in-out;
+            }
+            .restart-button:hover{
+                border: 0.5vmin solid $green;
+                transform: rotate(0);                
+                animation: rotateButton 2s;
+                animation-timing-function: ease;
+                animation-iteration-count: infinite;
+            }
+            @keyframes rotateButton {
+                from{
+                    transform: rotate(0);
+                }
+                to{
+                    transform: rotate(360deg);
+                }
+            }
+        }
     }
 }
 .game-container{
@@ -84,7 +204,12 @@ body{
 .faceColor{
     background-color: $fColor;
 }
-
 .rotY180{
     transform: rotateY(180deg);
+}
+.hidden{
+    display: none;
+}
+.flex{
+    display: flex;
 }
