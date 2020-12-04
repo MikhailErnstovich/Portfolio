@@ -46,12 +46,12 @@
         /*add overlay*/
         createOverlay: function(){
             let overlay = document.createElement('DIV');
-            overlay.classList.add('game-overlay');
+            overlay.classList.add('game-overlay','transparent');
             overlay.classList.add('flex');
             let messageBox = document.createElement('DIV');
             messageBox.classList.add('message-box');
             let messageText = document.createElement('H2');
-            messageText.innerText = "RESTART";
+            messageText.innerText = "START!";
             let restartButton = document.createElement('BUTTON');
             restartButton.innerHTML = '&#8635;';
             restartButton.classList.add('restart-button');
@@ -59,7 +59,6 @@
             messageBox.append(restartButton);
             overlay.append(messageBox);
             this.section.append(overlay);
-
         },
         /*create single card*/
         createCard: function(obj){
@@ -84,7 +83,7 @@
                 this.container.children[i].dataset.num = i;
             }
             this.createOverlay();
-            this.start(arr);
+            //this.start(arr);
         },
         /*create clock box*/
         createClock:function(){
@@ -230,7 +229,7 @@
         }
 
     };
-    
+
     gameObj.createTitle();
     gameObj.createClock();
     gameObj.createField(cellsQuantity, symbols);
@@ -239,6 +238,8 @@
     });
     gameSection.querySelector(".restart-button").addEventListener('click',function(){
         gameObj.start(symbols);
+        gameSection.querySelector('.game-overlay').classList.remove('transparent');
+        gameSection.querySelector('.game-overlay').classList.add('semitransparent');
     }); 
 })();
 
